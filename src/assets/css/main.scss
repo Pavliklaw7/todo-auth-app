@@ -1,0 +1,11 @@
+@import './utils/vars';
+@import './utils/mixins';
+@import './components/index';
+
+.container {
+  @include container;
+}
+
+.primary {
+  color: #0076c0;
+}

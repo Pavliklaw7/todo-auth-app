@@ -1,0 +1,40 @@
+.footer {
+  background-color: $primaryBgColor;
+  color: #fff;
+
+  &__logo {
+    width: 55px;
+  }
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 30px;
+  }
+
+  &__line {
+    margin: 0;
+  }
+
+  &__links {
+    display: flex;
+    justify-content: flex-end;
+    width: 80%;
+    text-align: end;
+    flex-wrap: wrap;
+    flex-basis: 75%;
+  }
+
+  &__link {
+    white-space: nowrap;
+  }
+
+  &__link:not(:first-child) {
+    margin-left: 20px;
+  }
+
+  &__copy {
+    padding-block: 30px;
+  }
+}

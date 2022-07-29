@@ -1,0 +1,23 @@
+.add-todo {
+  display: flex;
+  justify-content: center;
+
+  &__form {
+    display: grid;
+    grid-template-columns: 1fr 133px;
+    grid-gap: 23px;
+    width: min(600px, 100%);
+
+    @include _768 {
+      grid-template-columns: 1fr
+    }
+  }
+
+  &__btn {
+    @include btn;
+  }
+
+  &__input {
+    padding: 0 15px;
+  }
+}

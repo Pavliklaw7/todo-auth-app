@@ -1,0 +1,63 @@
+.todo {
+  &__logo {
+    img {
+    margin: 0 auto 67px;
+    width: 186px;
+    }
+  }
+
+  &__inner {
+    background-color: #fff;
+    padding: 32px;
+    min-height: 61.111vh;
+  }
+
+  &__title {
+    text-align: center;
+  }
+
+  &__line {
+    margin-bottom: 2rem;
+  }
+
+  &__add-todo {
+    margin-bottom: 1rem;
+  }
+
+  &__filter {
+    display: block;
+    text-align: center;
+    margin: 1rem auto;
+  }
+
+  &__placeholder {
+    margin-block: 2rem;
+    text-align: center;
+  }
+
+    &__bg {
+      height: 73.796vh;
+      background: linear-gradient(
+      0deg,
+      rgba(0, 86, 154, 1) 0%,
+      rgba(0, 175, 237, 1) 100%
+    );
+  }
+
+  &__container {
+    position: absolute;
+    top: 65px;
+    left: 0;
+    right: 0;
+    // bottom: 797px;
+    width: min(1191px, 90%);
+    margin-inline: auto;
+  }
+
+  &__exit {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    color: #fff;
+  }
+}

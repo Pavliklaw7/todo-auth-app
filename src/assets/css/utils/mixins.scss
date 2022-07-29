@@ -1,0 +1,45 @@
+@mixin container {
+  width: min(1166px, 90%);
+  margin-inline: auto;
+}
+
+@mixin _fs-xl {
+  font-size: 55px;
+  line-height: 86.18px;
+}
+
+@mixin _fs-l {
+  font-size: 1rem;
+  line-height: 25.07px;
+}
+
+@mixin _fs-m {
+  font-size: 14px;
+  line-height: 21.94px;
+}
+
+@mixin _768 {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin _1100 {
+  @media screen and (max-width: 1100px) {
+    @content;
+  }
+}
+
+@mixin btn {
+  height: 53px;
+  background-color: #0076c0;
+  color: #fff;
+  border: none;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background-color: #fff;
+    color: #0076c0;
+    border: 1px solid #0076c0;
+  }
+}

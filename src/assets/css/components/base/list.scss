@@ -1,0 +1,21 @@
+.list {
+  &__item-title {
+    @include _fs-l;
+
+    margin-bottom: 10px;
+
+  }
+
+    &__item-text {
+    @include _fs-m;
+
+    margin-bottom: 1rem;
+
+  }
+
+  &__item {
+    display: grid;
+    grid-template-columns: 23px 1fr;
+    grid-gap: 0 15px;
+  }
+}

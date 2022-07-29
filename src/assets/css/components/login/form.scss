@@ -1,0 +1,66 @@
+.form {
+  background-color: #fff;
+  box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.1);
+
+  &__container {
+    display: grid;
+    padding: 40px 31px 0;
+  }
+
+  &__label {
+    position: relative;
+    display: grid;
+
+    & > span {
+      margin-bottom: 7px;
+    }
+  }
+
+  &__err {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: translateY(100%);
+    transition: all 0.2s ease-in-out;
+  }
+
+  &__label:not(:last-child) {
+    margin-bottom: 40px;
+  }
+
+  &__show-pass {
+    font-size: 0.8rem;
+    border: none;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+
+  &__input {
+    border: 1px solid #9A9A9A;
+    height: 53px;
+    padding-inline: 15px;
+    outline: none;
+  }
+
+  &__btn {
+    @include btn;
+
+    margin-bottom: 20px;
+  }
+
+  &__link {
+    text-align: center;
+  }
+
+  &__footer {
+    padding-block: 17px;
+    margin-top: 23px;
+    text-align: center;
+    background-color: #F6F6F6;
+  }
+
+  &__err {
+    @include _fs-m;
+    color: red;
+  }
+}

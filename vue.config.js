@@ -1,4 +1,4 @@
 
 module.exports = {
-  piblicPath: process.env.NODE_ENV === 'production' ? '/todo-auth-app/' : '/'
+  publicPath: process.env.NODE_ENV === 'production' ? '/todo-auth-app/' : '/'
 }

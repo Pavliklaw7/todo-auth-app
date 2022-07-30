@@ -1,18 +1,25 @@
 <template>
   <li
     :class="{ done: todo.completed }"
-    @click="todo.completed = !todo.completed"
+    @click="!editable ? (todo.completed = !todo.completed) : null"
   >
-    <span>
+    <span :contenteditable="editable" :class="{ editable: editable }">
       {{ todo.title | uppercase }}
     </span>
-
-    <img
-      style="width: 15px"
-      src="@/assets/img/ui/close.svg"
-      alt="close"
-      v-on:click="$emit('remove-todo', todo.id)"
-    />
+    <span>
+      <img
+        style="width: 15px"
+        src="@/assets/img/ui/edit.svg"
+        alt="edit"
+        @click.stop="edit(todo.title)"
+      />
+      <img
+        style="width: 15px"
+        src="@/assets/img/ui/close.svg"
+        alt="close"
+        @click.stop="$emit('remove-todo', todo.id)"
+      />
+    </span>
   </li>
 </template>
 
@@ -22,6 +29,18 @@ export default {
     todo: {
       type: Object,
       required: true,
+    },
+  },
+  data() {
+    return {
+      text: "",
+      editable: false,
+    };
+  },
+  mounted() {},
+  methods: {
+    edit() {
+      this.editable = !this.editable;
     },
   },
   filters: {
@@ -39,6 +58,23 @@ li {
   justify-content: space-between;
   padding: 0.5rem 2rem;
   margin-bottom: 1rem;
+}
+
+span {
+  display: flex;
+  align-items: center;
+}
+
+span img:first-child {
+  margin-right: 1rem;
+}
+
+span img {
+  cursor: pointer;
+}
+
+span.editable {
+  border: 1px solid #000;
 }
 
 input {

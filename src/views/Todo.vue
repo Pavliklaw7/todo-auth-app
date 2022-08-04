@@ -19,7 +19,8 @@
         <Loader v-if="loading" />
         <TodoList
           v-else-if="filteredTodos.length"
-          v-bind:todos="filteredTodos"
+          :todos="filteredTodos"
+          @get-todos="getTodos"
           @remove-todo="removeTodo"
         />
         <p class="todo__placeholder" v-else>No todos!</p>
@@ -45,14 +46,7 @@ export default {
   mounted() {
     this.userName = localStorage.getItem("todo-user");
 
-    fetch("https://jsonplaceholder.typicode.com/todos?_limit=3")
-      .then((response) => response.json())
-      .then((json) => {
-        setTimeout(() => {
-          this.todos = json;
-          this.loading = false;
-        }, 1000);
-      });
+    this.getTodos();
   },
   computed: {
     filteredTodos() {
@@ -74,11 +68,45 @@ export default {
     },
   },
   methods: {
+    getTodos() {
+      const todos = localStorage.getItem("todos");
+
+      if (!JSON.parse(todos)) {
+        this.fetchTodos();
+      } else {
+        console.log("else");
+        this.todos = JSON.parse(todos);
+        this.loading = false;
+      }
+    },
+    async fetchTodos() {
+      const todos = await fetch(
+        "https://jsonplaceholder.typicode.com/todos?_limit=3"
+      )
+        .then((response) => response.json())
+        .then((json) => {
+          setTimeout(() => {
+            this.todos = json;
+            this.loading = false;
+          }, 1000);
+
+          localStorage.setItem("todos", JSON.stringify(json));
+        });
+
+      console.log("todos", todos);
+    },
     removeTodo(id) {
-      this.todos = this.todos.filter((t) => t.id !== id);
+      const todos = localStorage.getItem("todos");
+      const filtered = JSON.parse(todos).filter((t) => t.id !== id);
+
+      this.todos = filtered;
+      localStorage.setItem("todos", JSON.stringify(filtered));
     },
     addTodo(todo) {
-      this.todos.push(todo);
+      // this.todos.push(todo);
+      localStorage.setItem("todos", JSON.stringify([...this.todos, todo]));
+      const newTodos = localStorage.getItem("todos");
+      this.todos = JSON.parse(newTodos);
     },
     logout() {
       localStorage.removeItem("todo-user");

@@ -2,10 +2,12 @@
   <div>
     <ul>
       <TodoItem
-        v-for="todo in todos"
+        v-for="(todo, index) in todos"
         :key="todo.title"
+        :index="index"
         :todo="todo"
-        v-on:remove-todo="removeTodo"
+        @remove-todo="removeTodo"
+        @get-todos="$emit('get-todos')"
       />
     </ul>
   </div>

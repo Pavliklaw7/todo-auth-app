@@ -1,11 +1,14 @@
 <template>
   <li
     :class="{ done: todo.completed }"
-    @click="!editable ? (todo.completed = !todo.completed) : null"
+    @click="!editable ? completeTodo() : null"
   >
-    <span :contenteditable="editable" :class="{ editable: editable }">
-      {{ todo.title | uppercase }}
-    </span>
+    <input
+      :class="!editable ? 'input' : 'input editable'"
+      :disabled="!editable"
+      :value="todo.title"
+      @change="input"
+    />
     <span>
       <img
         style="width: 15px"
@@ -30,17 +33,30 @@ export default {
       type: Object,
       required: true,
     },
+    index: Number,
   },
   data() {
     return {
-      text: "",
+      todoTitle: "",
       editable: false,
     };
   },
-  mounted() {},
   methods: {
     edit() {
       this.editable = !this.editable;
+    },
+    completeTodo() {
+      console.log("completeTodo");
+      let todos = JSON.parse(localStorage.getItem("todos"));
+      todos[this.index].completed = !todos[this.index].completed;
+      localStorage.setItem("todos", JSON.stringify(todos));
+      this.$emit("get-todos");
+    },
+    input(e) {
+      let todos = JSON.parse(localStorage.getItem("todos"));
+      todos[this.index].title = e.target.value;
+      localStorage.setItem("todos", JSON.stringify(todos));
+      this.$emit("get-todos");
     },
   },
   filters: {
@@ -79,6 +95,16 @@ span.editable {
 
 input {
   margin-right: 1rem;
+}
+
+.input {
+  border: none;
+  background-color: transparent;
+  width: 100%;
+}
+
+.input.editable {
+  border: 1px solid #000;
 }
 
 .done {
